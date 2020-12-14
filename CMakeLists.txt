@@ -28,8 +28,14 @@ if ( ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
   message(FATAL "In-source build is not allowed")
 endif ()
 
-set(ROCM_PATH "/opt/rocm" CACHE STRING "ROCM install path")
-set(CMAKE_INSTALL_PREFIX "/opt/rocm" CACHE STRING "CMAKE installation directory")
+set(ROCM_PATH "/opt/rocm" CACHE PATH "ROCM install path")
+set(CMAKE_INSTALL_PREFIX "/opt/rocm" CACHE PATH "CMAKE installation directory")
+set(ROCR_INC_DIR "${ROCM_PATH}/include" CACHE PATH "Contains header files exported by ROC Runtime" FORCE)
+set(ROCR_LIB_DIR "${ROCM_PATH}/lib" CACHE PATH "Contains library files exported by ROC Runtime" FORCE)
+set(HIP_INC_DIR "${ROCM_PATH}/hip" )
+set(HIP_INC_DIR "${ROCM_PATH}/hip" CACHE PATH "Contains header files exported by ROC Runtime" FORCE)
+set(ROCT_INC_DIR "${ROCM_PATH}/include" CACHE PATH "Contains header files exported by ROC Trunk" FORCE)
+
 execute_process(COMMAND ln -s /usr/bin/python3 /usr/bin/python)
 
 #
